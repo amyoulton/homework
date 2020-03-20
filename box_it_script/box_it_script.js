@@ -13,15 +13,20 @@ const drawBarsAround = (string) => "|" + string + "|"
 
 const boxIt = (arr) => {
     const newLines = '\n'
-    let l = Math.max(...arr.map(a => a.length))
+    let l = 0
     let output = ''
-    for(let i = 0; i < arr.length; i++){
-      word = arr[i] + ' '.repeat(l - arr[i].length)
-      if(i === arr.length - 1){
+    if(arr.length === 0){
+        l = 0
+        return drawTopBorder(l) + newLines + drawBottomBorder(l)
+    }else {l = Math.max(...arr.map(a => a.length))
+        for(let i = 0; i < arr.length; i++){
+         word = arr[i] + ' '.repeat(l - arr[i].length)
+         if(i === arr.length - 1){
         output += newLines + drawBarsAround(word) + newLines
-      } else output += newLines + drawBarsAround(word) + newLines + drawMiddleBorder(l)
-     }
-return drawTopBorder(l) + output + drawBottomBorder(l)
+        } else output += newLines + drawBarsAround(word) + newLines + drawMiddleBorder(l)
+        }
+        return drawTopBorder(l) + output + drawBottomBorder(l)
+    }
 }
 
 let array = process.argv.slice(2);
