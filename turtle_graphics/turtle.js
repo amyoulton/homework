@@ -8,7 +8,29 @@ class Turtle {
         this.direction = 'east'
     }
     
-    forward(x){
+    forward(n){
+      if(this.direction === 'east'){
+            this.x += n
+            for(let i = 0; i <= this.x; i++){
+            this.turtleLog.push([i, this.y])
+            }
+        } else if(this.direction === 'south'){
+            this.y += n
+            for(let i = 0; i <= this.y; i++){
+            this.turtleLog.push([this.x, i])
+            }
+        } else if(this.direction === 'west'){
+            this.x -= n
+            for(let i = 0; i <= this.x; i++){
+            this.turtleLog.push([i, this.y])
+            }
+        } else if(this.direction === 'north'){
+            this.y -= n
+            for(let i = 0; i <= this.y; i++){
+            this.turtleLog.push([this.x, i])
+            }
+        }
+      
     }
     
 
@@ -36,29 +58,12 @@ class Turtle {
         }
     }
 
-    allPoints(x, y){
-        this.turtleLog.push([x, y])
+    allPoints(){
+        return this.turtleLog
     }
 
 }        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let kiwi = new Turtle(0, 4)
+kiwi.forward(3)
+kiwi.allPoints()
