@@ -2,7 +2,7 @@ class Turtle {
     
     constructor(x, y){
         this.turtle = '*'
-        this.turtleLog = [[x, y]]
+        this.turtleLog = []
         this.x = x;
         this.y = y;
         this.direction = 'east'
@@ -10,7 +10,7 @@ class Turtle {
     
     forward(x){
     }
-    }
+    
 
     right(){
         if(this.direction === 'east'){
@@ -25,20 +25,22 @@ class Turtle {
     }
 
     left(){
-        this.position = 'left'
+        if(this.direction === 'east'){
+            this.direction = 'north'
+        } else if(this.direction === 'north'){
+            this.direction = 'west'
+        } else if(this.direction === 'west'){
+            this.direction = 'south'
+        } else if(this.direction === 'south'){
+            this.direction = 'east'
+        }
     }
 
     allPoints(x, y){
         this.turtleLog.push([x, y])
     }
 
-}
-const flash = new Turtle(0, 0)
-flash.forward(3)
-flash.left()
-flash.forward(3);
-    console.log(flash.turtleLog)
-        
+}        
 
 
 
