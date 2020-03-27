@@ -30,7 +30,7 @@ class Turtle {
             }
             this.y -= n
         }
-      
+      return this
     }
     
 
@@ -44,6 +44,7 @@ class Turtle {
         } else if(this.direction === 'north'){
             this.direction = 'east'
         }
+        return this
     }
 
     left(){
@@ -56,26 +57,13 @@ class Turtle {
         } else if(this.direction === 'south'){
             this.direction = 'east'
         }
+        return this
     }
 
     allPoints(){
         return this.turtleLog
+        return this
+        
     }
 
 }        
-
-let kiwi = new Turtle(0, 4)
-kiwi.forward(3)
-kiwi.left()
-kiwi.forward(3)
-kiwi.right()
-kiwi.forward(5)
-kiwi.right()
-kiwi.forward(8)
-kiwi.right()
-kiwi.forward(5)
-kiwi.right()
-kiwi.forward(3)
-kiwi.left()
-kiwi.forward(3)
-kiwi.allPoints()
