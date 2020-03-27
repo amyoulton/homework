@@ -87,6 +87,13 @@ class Turtle {
     this.yMax += Math.max(...this.yCoordinates)
     this.xMin += Math.min(...this.xCoordinates)
     this.yMin += Math.min(...this.yCoordinates)
+    if(this.xMin < 0){
+      this.xMin = 0
+    } else this.xMin;
+
+    if(this.yMin < 0){
+      this.yMin = 0
+    } else this.yMin;
   
   for(let y = 0; y < this.yMax; y++ ){
         // this.print.push(['\n'])
@@ -99,7 +106,7 @@ class Turtle {
         } 
     }
   
-  for (let k = 0; k < this.turtleLog.length; k++) {
+  for (let k = 0; k < this.turtleLog.length; k++) { 
    let x = this.turtleLog[k][0]
    let y = this.turtleLog[k][1]
    this.toPrint[y - this.yMin][x - this.xMin] = ' 🐢 '
@@ -113,6 +120,7 @@ class Turtle {
 
     }
   }
+    
     console.log(this.turtle)
   
     }
@@ -120,4 +128,4 @@ class Turtle {
 }        
 
 let kiwi = new Turtle(0, 4)
-kiwi.forward(3).left().forward(3).right().forward(5).right().forward(8).right().forward(5).right().forward(3).left().forward(3).print()
+kiwi.forward(3).left().forward(3).right().forward(5).right().forward(8).right().forward(5).right().forward(3).left().forward(5).print()
