@@ -60,7 +60,7 @@ class Turtle {
     }
 
     allPoints(){
-        return this.turtleLog
+        console.log(this.turtleLog)
         return this
         
     }
@@ -87,22 +87,17 @@ class Turtle {
     this.yMax += Math.max(...this.yCoordinates)
     this.xMin += Math.min(...this.xCoordinates)
     this.yMin += Math.min(...this.yCoordinates)
-    if(this.xMin < 0){
-      this.xMin = 0
-    } else this.xMin;
 
-    if(this.yMin < 0){
-      this.yMin = 0
-    } else this.yMin;
-  
-  for(let y = 0; y < this.yMax; y++ ){
-        // this.print.push(['\n'])
-    for(let x = 0; x <= this.xMax; x++){
+    if (this.xMin > 0) this.xMin = 0;
+    if (this.yMin > 0) this.yMin = 0;
+
+  for(let y = this.yMin; y <= this.yMax; y++ ){
+    for(let x = this.xMin; x <= this.xMax; x++){
        if(x === this.xMax){
-    this.toPrint.push(this.print,)
+    this.print.push(' - ')
+    this.toPrint.push(this.print)
     this.print = []
        } else this.print.push(' - ')
-      
         } 
     }
   
@@ -111,6 +106,7 @@ class Turtle {
    let y = this.turtleLog[k][1]
    this.toPrint[y - this.yMin][x - this.xMin] = ' 🐢 '
   }
+
   for(let value of this.toPrint){
     for(let i = 0; i < value.length; i++){
      this.turtle += (value[i])
