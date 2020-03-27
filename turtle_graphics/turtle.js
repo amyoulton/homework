@@ -104,7 +104,7 @@ class Turtle {
   for (let k = 0; k < this.turtleLog.length; k++) { 
    let x = this.turtleLog[k][0]
    let y = this.turtleLog[k][1]
-   this.toPrint[y - this.yMin][x - this.xMin] = ' 🐢 '
+   this.toPrint[y - this.yMin][x - this.xMin] = ' O '
   }
 
   for(let value of this.toPrint){
