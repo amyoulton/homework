@@ -1,7 +1,6 @@
 class Turtle {
     
     constructor(x, y){
-        this.turtle = '*'
         this.turtleLog = [[x, y]]
         this.x = x;
         this.y = y;
@@ -67,12 +66,16 @@ class Turtle {
     }
 
     print(){
-      this.newArray = this.turtleLog.sort().concat.apply([],this.turtleLog)
+      this.newArray = this.turtleLog.concat.apply([],this.turtleLog)
       this.xCoordinates = []
       this.yCoordinates = []
-      this.xAxis = 0
-      this.yAxis = 0
-      this.path = ''
+      this.xMax = 0
+      this.yMax = 0
+      this.xMin = 0
+      this.yMin = 0
+      this.toPrint = []
+      this.print = []
+      this.turtle = ''
       for(let i = 0; i < this.newArray.length; i++){
         if(i % 2 === 0){
          this.xCoordinates.push(this.newArray[i])
@@ -80,23 +83,41 @@ class Turtle {
          this.yCoordinates.push(this.newArray[i])
         }
       }
-    this.xAxis += Math.max(...this.xCoordinates)
-    this.yAxis += Math.max(...this.yCoordinates)
+    this.xMax += Math.max(...this.xCoordinates)
+    this.yMax += Math.max(...this.yCoordinates)
+    this.xMin += Math.min(...this.xCoordinates)
+    this.yMin += Math.min(...this.yCoordinates)
   
-    for(let y = 0; y < this.yAxis; y++){
-     this.path += ' -'
-      for(let x = 0; x < this.xAxis; x++){
-        if(x === this.xAxis - 1){
-          this.path += '\n'
-        } else {
-         this.path += ' -'
-          }
-       }
-    }  
-    return this.path
+  for(let y = 0; y < this.yMax; y++ ){
+        // this.print.push(['\n'])
+    for(let x = 0; x <= this.xMax; x++){
+       if(x === this.xMax){
+    this.toPrint.push(this.print,)
+    this.print = []
+       } else this.print.push(' - ')
+      
+        } 
+    }
+  
+  for (let k = 0; k < this.turtleLog.length; k++) {
+   let x = this.turtleLog[k][0]
+   let y = this.turtleLog[k][1]
+   this.toPrint[y - this.yMin][x - this.xMin] = ' 🐢 '
+  }
+  for(let value of this.toPrint){
+    for(let i = 0; i < value.length; i++){
+     this.turtle += (value[i])
+     if(i === value.length -1 ){
+       this.turtle += '\n'
+     }
+
+    }
+  }
+    console.log(this.turtle)
+  
     }
 
 }        
 
 let kiwi = new Turtle(0, 4)
- console.log(kiwi.forward(3).left().forward(3).right().forward(5).right().forward(8).right().forward(5).right().forward(3).left().forward(3).print())
+kiwi.forward(3).left().forward(3).right().forward(5).right().forward(8).right().forward(5).right().forward(3).left().forward(3).print()
