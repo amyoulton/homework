@@ -2,7 +2,7 @@ class Turtle {
     
     constructor(x, y){
         this.turtle = '*'
-        this.turtleLog = []
+        this.turtleLog = [[x, y]]
         this.x = x;
         this.y = y;
         this.direction = 'east'
@@ -10,25 +10,25 @@ class Turtle {
     
     forward(n){
       if(this.direction === 'east'){
+            for(let i = 1 ; i <= n; i++){
+            this.turtleLog.push([this.x + i, this.y])
+            }
             this.x += n
-            for(let i = 0; i <= this.x; i++){
-            this.turtleLog.push([i, this.y])
-            }
         } else if(this.direction === 'south'){
+            for(let i = 1; i <= n; i++){
+            this.turtleLog.push([this.x, this.y + i])
+            }
             this.y += n
-            for(let i = 0; i <= this.y; i++){
-            this.turtleLog.push([this.x, i])
-            }
         } else if(this.direction === 'west'){
+            for(let i = 1; i <= n; i++){
+            this.turtleLog.push([this.x - i, this.y])
+            }
             this.x -= n
-            for(let i = 0; i <= this.x; i++){
-            this.turtleLog.push([i, this.y])
-            }
         } else if(this.direction === 'north'){
-            this.y -= n
-            for(let i = 0; i <= this.y; i++){
-            this.turtleLog.push([this.x, i])
+            for(let i = 1; i <= n; i++){
+            this.turtleLog.push([this.x, this.y - i])
             }
+            this.y -= n
         }
       
     }
@@ -65,5 +65,17 @@ class Turtle {
 }        
 
 let kiwi = new Turtle(0, 4)
+kiwi.forward(3)
+kiwi.left()
+kiwi.forward(3)
+kiwi.right()
+kiwi.forward(5)
+kiwi.right()
+kiwi.forward(8)
+kiwi.right()
+kiwi.forward(5)
+kiwi.right()
+kiwi.forward(3)
+kiwi.left()
 kiwi.forward(3)
 kiwi.allPoints()
