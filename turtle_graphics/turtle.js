@@ -5,7 +5,7 @@ class Turtle {
         this.turtleLog = [[x, y]]
         this.x = x;
         this.y = y;
-        this.direction = 'east'
+        this.direction = 'east'    
     }
     
     forward(n){
@@ -66,4 +66,37 @@ class Turtle {
         
     }
 
+    print(){
+      this.newArray = this.turtleLog.sort().concat.apply([],this.turtleLog)
+      this.xCoordinates = []
+      this.yCoordinates = []
+      this.xAxis = 0
+      this.yAxis = 0
+      this.path = ''
+      for(let i = 0; i < this.newArray.length; i++){
+        if(i % 2 === 0){
+         this.xCoordinates.push(this.newArray[i])
+        } else {
+         this.yCoordinates.push(this.newArray[i])
+        }
+      }
+    this.xAxis += Math.max(...this.xCoordinates)
+    this.yAxis += Math.max(...this.yCoordinates)
+  
+    for(let y = 0; y < this.yAxis; y++){
+     this.path += ' -'
+      for(let x = 0; x < this.xAxis; x++){
+        if(x === this.xAxis - 1){
+          this.path += '\n'
+        } else {
+         this.path += ' -'
+          }
+       }
+    }  
+    return this.path
+    }
+
 }        
+
+let kiwi = new Turtle(0, 4)
+ console.log(kiwi.forward(3).left().forward(3).right().forward(5).right().forward(8).right().forward(5).right().forward(3).left().forward(3).print())
