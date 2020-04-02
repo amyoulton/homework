@@ -1,10 +1,6 @@
-1 ☐ Tigers
+1 [ ] Go for a walk
 
-2 ☐ Lions
+2 [ ] Go for a coffee
 
-3 ☐ Piglets
-
-4 ☐ Mortimer
-
-5 ☐ Kiwi
+3 [✔] Zoom with Amy
 
