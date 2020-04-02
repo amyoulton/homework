@@ -14,7 +14,6 @@ const menu =
 //variables for creating new items
 let num = 0;
 const box = '[ ]';
-const checkBox = '[✔]';
 
 //variables for completing items
 let done;
@@ -47,7 +46,7 @@ const application = () => {
         num += 1;
         fs.appendFile(
           './to_do_list.txt',
-          `${num} ${box} ${answer}\n`,
+          `${num} [ ] ${answer}\n`,
           'utf8',
           err => {
             if (err) {
@@ -83,7 +82,6 @@ const application = () => {
           return application();
         }
         arr = data.split('\n');
-        console.log(arr);
         arr.forEach(element => {
           if (element.includes(done)) {
             task = element.substring(6);
@@ -92,14 +90,13 @@ const application = () => {
           }
         });
         output = data.replace(toReplace, newLine);
-        console.log(output);
         fs.writeFile('./to_do_list.txt', output, 'utf8', function(err) {
           if (err) {
             console.log(
               '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
             );
           }
-          console.log(`Completed "${task}"`);
+          console.log(`\nCompleted: "${task}"`);
           return application();
         });
       });
@@ -126,7 +123,6 @@ const application = () => {
           return application();
         }
         arr = data.split('\n');
-        console.log(arr);
         arr.forEach(element => {
           if (element.includes(done)) {
             console.log(element);
@@ -134,7 +130,6 @@ const application = () => {
             task = element.substring(6);
           }
         });
-        console.log(index);
         arr.splice(index, 1);
         output = arr.join('\n');
 
@@ -145,17 +140,19 @@ const application = () => {
             );
             return application();
           }
-          console.log(`Completed "${task}"`);
+          console.log(`\nDeleted: "${task}"`);
           return application();
         });
       });
     } else if (answer === 'q') {
+      // this is the code for when q is selected
       fs.unlink('./to_do_list.txt', err => {
         if (err) rl.close();
         console.log("\nWe're sad to see you go!\n");
         rl.close();
       });
     } else {
+      // this is the code for when they enter an option that isn't available
       console.log("\nSorry, that's not one of our options!\n");
       return application();
     }
