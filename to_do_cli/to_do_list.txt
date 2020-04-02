@@ -1,6 +1,0 @@
-1 [ ] Go for a walk
-
-2 [ ] Go for a coffee
-
-3 [✔] Zoom with Amy
-

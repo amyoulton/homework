@@ -24,6 +24,9 @@ let newLine = '';
 let task;
 let toReplace;
 
+// variables for deleting items
+let index;
+
 const application = () => {
   rl.question(menu, answer => {
     if (answer === 'v') {
@@ -44,7 +47,7 @@ const application = () => {
         num += 1;
         fs.appendFile(
           './to_do_list.txt',
-          `${num} ${box} ${answer}\n\n`,
+          `${num} ${box} ${answer}\n`,
           'utf8',
           err => {
             if (err) {
@@ -80,14 +83,61 @@ const application = () => {
           return application();
         }
         arr = data.split('\n');
+        console.log(arr);
         arr.forEach(element => {
           if (element.includes(done)) {
-            task = element.substring(5);
+            task = element.substring(6);
             newLine = element.replace('[ ]', '[✔]');
             toReplace = element;
           }
         });
         output = data.replace(toReplace, newLine);
+        console.log(output);
+        fs.writeFile('./to_do_list.txt', output, 'utf8', function(err) {
+          if (err) {
+            console.log(
+              '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
+            );
+          }
+          console.log(`Completed "${task}"`);
+          return application();
+        });
+      });
+    } else if (answer.includes('d')) {
+      //this is the code for when 'd' is selected
+      if (answer.length === 1) {
+        console.log(
+          "\nWoops, you didn't select which one. Please try again with c followed by the number of your selection.\n"
+        );
+        return application();
+      }
+      done = answer.substring(1);
+      fs.readFile('./to_do_list.txt', 'utf8', function(err, data) {
+        if (err) {
+          console.log(
+            "\nSorry, this file doesn't exist yet! Select (n) to add an items to start a new list!\n"
+          );
+          return application();
+        }
+        if (data.includes(done) === false) {
+          console.log(
+            "\nOh no! Your list doesn't have that number. Please try again!"
+          );
+          return application();
+        }
+        arr = data.split('\n');
+        console.log(arr);
+        arr.forEach(element => {
+          if (element.includes(done)) {
+            console.log(element);
+            index = element.indexOf();
+            task = element.substring(6);
+          }
+        });
+        index -= 1;
+        arr.splice(index, 1);
+        output = arr.join('\n');
+
         fs.writeFile('./to_do_list.txt', output, 'utf8', function(err) {
           if (err) {
             console.log(
