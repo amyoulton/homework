@@ -130,11 +130,11 @@ const application = () => {
         arr.forEach(element => {
           if (element.includes(done)) {
             console.log(element);
-            index = element.indexOf();
+            index = arr.indexOf(element);
             task = element.substring(6);
           }
         });
-        index -= 1;
+        console.log(index);
         arr.splice(index, 1);
         output = arr.join('\n');
 
@@ -143,11 +143,21 @@ const application = () => {
             console.log(
               '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
             );
+            return application();
           }
           console.log(`Completed "${task}"`);
           return application();
         });
       });
+    } else if (answer === 'q') {
+      fs.unlink('./to_do_list.txt', err => {
+        if (err) rl.close();
+        console.log("\nWe're sad to see you go!\n");
+        rl.close();
+      });
+    } else {
+      console.log("\nSorry, that's not one of our options!\n");
+      return application();
     }
   });
 };
