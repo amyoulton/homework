@@ -26,15 +26,24 @@ let toReplace;
 // variables for deleting items
 let index;
 
+// variables for errors/non-options
+
+const noFile =
+  "\nSorry, this file doesn't exist yet! Select (n) to add an items to start a new list!\n";
+const wentWrong =
+  '\nSorry, something went wrong. Please try one more time, but double check your input!\n';
+const noSelection =
+  "\nWoops, you didn't select which one. Please try again with c followed by the number of your selection.\n";
+const invalidNumber =
+  "\nOh no! Your list doesn't have that number. Please try again!";
+
 const application = () => {
   rl.question(menu, answer => {
     if (answer === 'v') {
       // this is the code for when 'v' is selected
       fs.readFile('./to_do_list.txt', (err, data) => {
         if (err) {
-          console.log(
-            "\nSorry, this file doesn't exist yet! Select (n) to add an items to start a new list!\n"
-          );
+          console.log(noFile);
           return application();
         }
         console.log('\n' + data.toString());
@@ -50,9 +59,7 @@ const application = () => {
           'utf8',
           err => {
             if (err) {
-              console.log(
-                '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
-              );
+              console.log(wentWrong);
               return application();
             }
             return application();
@@ -62,23 +69,17 @@ const application = () => {
     } else if (answer.includes('c')) {
       //this is the code for when 'c' is selected
       if (answer.length === 1) {
-        console.log(
-          "\nWoops, you didn't select which one. Please try again with c followed by the number of your selection.\n"
-        );
+        console.log(noSelection);
         return application();
       }
       done = answer.substring(1);
       fs.readFile('./to_do_list.txt', 'utf8', function(err, data) {
         if (err) {
-          console.log(
-            "\nSorry, this file doesn't exist yet! Select (n) to add an items to start a new list!\n"
-          );
+          console.log(noFile);
           return application();
         }
         if (data.includes(done) === false) {
-          console.log(
-            "\nOh no! Your list doesn't have that number. Please try again!"
-          );
+          console.log(invalidNumber);
           return application();
         }
         arr = data.split('\n');
@@ -92,9 +93,7 @@ const application = () => {
         output = data.replace(toReplace, newLine);
         fs.writeFile('./to_do_list.txt', output, 'utf8', function(err) {
           if (err) {
-            console.log(
-              '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
-            );
+            console.log(wentWrong);
           }
           console.log(`\nCompleted: "${task}"`);
           return application();
@@ -103,23 +102,17 @@ const application = () => {
     } else if (answer.includes('d')) {
       //this is the code for when 'd' is selected
       if (answer.length === 1) {
-        console.log(
-          "\nWoops, you didn't select which one. Please try again with c followed by the number of your selection.\n"
-        );
+        console.log(noSelection);
         return application();
       }
       done = answer.substring(1);
       fs.readFile('./to_do_list.txt', 'utf8', function(err, data) {
         if (err) {
-          console.log(
-            "\nSorry, this file doesn't exist yet! Select (n) to add an items to start a new list!\n"
-          );
+          console.log(noFile);
           return application();
         }
         if (data.includes(done) === false) {
-          console.log(
-            "\nOh no! Your list doesn't have that number. Please try again!"
-          );
+          console.log(invalidNumber);
           return application();
         }
         arr = data.split('\n');
@@ -135,9 +128,7 @@ const application = () => {
 
         fs.writeFile('./to_do_list.txt', output, 'utf8', function(err) {
           if (err) {
-            console.log(
-              '\nSorry, something went wrong. Please try one more time, but double check your input!\n'
-            );
+            console.log(wentWrong);
             return application();
           }
           console.log(`\nDeleted: "${task}"`);
