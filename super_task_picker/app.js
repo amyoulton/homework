@@ -28,6 +28,9 @@ app.use(
 const baseRouter = require('./routes/baseRouter');
 app.use('/', baseRouter);
 
+const cohortsRouter = require('./routes/cohortsRouter');
+app.use('/cohorts', cohortsRouter);
+
 const PORT = 3000;
 const ADDRESS = 'localhost'; // 127.0.0.1
 app.listen(PORT, ADDRESS, () => {
