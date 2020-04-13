@@ -1,5 +1,5 @@
 const express = require('express');
-// const knex = require('../db/connections');
+const knex = require('../db/connection');
 const router = express.Router();
 
 router.get('/', (request, response) => {
