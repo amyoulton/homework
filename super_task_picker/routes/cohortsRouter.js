@@ -44,6 +44,15 @@ router.get('/:id', (request, response) => {
       }
     });
 });
+router.delete('/:id', (request, response) => {
+  console.log('inside delete route: ', request.params.id);
+  knex('cohorts')
+    .where('id', request.params.id)
+    .del()
+    .then(post => {
+      response.redirect('/cohorts/');
+    });
+});
 
 router.get('/:id/edit', (request, response) => {
   knex('cohorts')
