@@ -23,10 +23,10 @@ router.post('/', (request, response) => {
 
 router.get('/', (request, response) => {
   knex('cohorts')
-    .orderBy('createdAt', 'desc')
-    .then(post => {
+    .orderBy('created_at', 'desc')
+    .then(posts => {
       //   response.send(posts);
-      response.render('cohorts/index', { post: post });
+      response.render('cohorts/index', { posts: posts });
     });
 });
 
