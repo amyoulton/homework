@@ -32,6 +32,7 @@ router.get('/', (request, response) => {
 
 router.get('/:id', (request, response) => {
   const id = request.params.id;
+  const choice = request.query;
   knex('cohorts')
     .where('id', id)
     .first()
@@ -42,8 +43,12 @@ router.get('/:id', (request, response) => {
       } else {
         response.redirect('/cohorts/');
       }
+
+      console.log(post.members);
+      console.log(choice);
     });
 });
+
 router.delete('/:id', (request, response) => {
   console.log('inside delete route: ', request.params.id);
   knex('cohorts')
