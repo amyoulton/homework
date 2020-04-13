@@ -3,7 +3,7 @@ module.exports = {
     client: 'pg',
 
     connection: {
-      database: 'task_picker'
+      database: 'team_picker'
     },
     migrations: {
       tablename: 'migrations',

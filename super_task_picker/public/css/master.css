@@ -1,0 +1,15 @@
+.cohort-header {
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.team-name {
+  display: flex;
+  margin-top: 0.2em;
+}

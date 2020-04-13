@@ -10,14 +10,9 @@
                 <div><%= post.members %></div>
             </p>
 
-            <div class="d-flex">
-                <a href="/cohorts/<%= post.id %>/edit" class="btn btn-outline-success mr-2">
-                    Edit
-                </a>
             </div>
-            <form method="POST" action="/cohorts/<%= post.id %>" >
-                <input type="hidden" name="_method" value="DELETE" />
-                <input type="submit" class="btn btn-outline-danger" value="Delete" />
+            <form method="GET" action="/cohorts/<%= post.id %>" >
+                <input type="submit" class="btn btn-outline-danger" value="Show Cohort" />
             </form>
         </div>
     </div>

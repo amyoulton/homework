@@ -11,11 +11,22 @@ router.post('/', (request, response) => {
   const cohortData = request.body;
   knex('cohorts')
     .insert({
-      content: cohortData.content
+      logoUrl: cohortData.logoUrl,
+      name: cohortData.name,
+      members: cohortData.members
     })
     .returning('*')
     .then(post => {
       response.redirect(`/cohorts/${post[0].id}`);
+    });
+});
+
+router.get('/', (request, response) => {
+  knex('cohorts')
+    .orderBy('createdAt', 'desc')
+    .then(post => {
+      //   response.send(posts);
+      response.render('cohorts/index', { post: post });
     });
 });
 
@@ -27,7 +38,7 @@ router.get('/:id', (request, response) => {
     .then(post => {
       console.log(post);
       if (post) {
-        response.render('cohorts/show', { cohorts: post });
+        response.render('cohorts/show', { post: post });
       } else {
         response.redirect('/cohorts/');
       }
