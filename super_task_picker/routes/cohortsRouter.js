@@ -45,4 +45,28 @@ router.get('/:id', (request, response) => {
     });
 });
 
+router.get('/:id/edit', (request, response) => {
+  knex('cohorts')
+    .where('id', request.params.id)
+    .first()
+    .then(post => {
+      response.render('cohorts/edit', { post: post });
+    });
+});
+
+router.patch('/:id', (request, response) => {
+  const updatedPost = {
+    logoUrl: request.body.logoUrl,
+    name: request.body.name,
+    members: request.body.members
+  };
+
+  knex('cohorts')
+    .where('id', request.params.id)
+    .update(updatedPost)
+    .then(() => {
+      response.redirect(`/cohorts/${request.params.id}`);
+    });
+});
+
 module.exports = router;

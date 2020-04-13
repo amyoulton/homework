@@ -12,6 +12,7 @@
 .team-name {
   display: flex;
   margin-top: 0.2em;
+  padding-left: 3px;
 }
 
 .list-group-flush {

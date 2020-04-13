@@ -2,7 +2,7 @@
 <div class="container">
     <% for(let post of posts) { %>
     <div class="card mb-4">    
-        <div class="card body">
+        <div class="card-body">
             <div class="cohort-header">
             <img class="logo" src="<%= post.logoUrl %>">
             <h4 class="team-name"><%= post.name %></h4>
@@ -12,7 +12,7 @@
             </p>
 
             <form method="GET" action="/cohorts/<%= post.id %>" >
-                <input type="submit" class="btn btn-outline-danger" value="Show Cohort" />
+                <input type="submit" class="btn btn-primary" value="Show Cohort" />
             </form>
         </div>
     </div>
