@@ -1,7 +1,8 @@
 <%- include('../partials/header.ejs') %>
-<div class="container">
-    <div class="card mb-4">    
-        <div class="card body">
+<div class="container">   
+    <div class="card">
+        <ul class="list-group-flush">
+            <li class="list-group-item">
             <div class="cohort-header">
             <img class="logo" src="<%= post.logoUrl %>">
             <h4 class="team-name"><%= post.name %></h4>
@@ -9,17 +10,22 @@
             <p class="card-text">
                 <div><%= post.members %></div>
             </p>
-
-            <div class="d-flex">
-                <a href="/cohorts/<%= post.id %>/edit" class="btn btn-outline-success mr-2">
-                    Edit
-                </a>
+            </li>
+            <li class="list-group-item">
+            <form action="#">
+            <div class="input-group-flush">
+                <p>Method</p>
+                <input type="radio" name="method" value="team-count">
+                <label for="team-count">Team Count</label><br/>
+                <input type="radio" name="method" value="num-per-team">
+                <label for="num-per-team">Number Per Team</label><br/><br>
+                <label for="quantity">Quantity</label><br>
+                <input type="text" name="quantity" class="quantity">
+                <input type="submit" class="btn btn-outline-primary btn-block" value="Assign Teams" />
             </div>
-            <form method="POST" action="/cohorts/<%= post.id %>" >
-                <input type="hidden" name="_method" value="DELETE" />
-                <input type="submit" class="btn btn-outline-danger" value="Delete" />
             </form>
+            </li>
+        </ul>
         </div>
     </div>
-</div>
 <%- include('../partials/footer.ejs') %>

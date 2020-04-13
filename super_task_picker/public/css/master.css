@@ -1,8 +1,3 @@
-nav > ul > li {
-  display: flex;
-  justify-content: space-between;
-}
-
 .cohort-header {
   display: flex;
 }
@@ -17,4 +12,40 @@ nav > ul > li {
 .team-name {
   display: flex;
   margin-top: 0.2em;
+}
+
+.list-group-flush {
+  margin: 0;
+  padding: 1em 1em;
+}
+
+.quantity {
+  width: 100%;
+}
+
+.btn {
+  margin-top: 1em;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 740px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 980px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1160px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
 }
