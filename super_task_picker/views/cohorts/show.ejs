@@ -37,11 +37,12 @@
             <% if(which === 'num-per-team'){ %> 
               <% let toPrint = utils.numPerTeam(post.members, quantity) %> 
               <% let teamNum = 0 %> 
+              <li class="list-group-item members"># Of Members</li>
                 <%for(let value of toPrint){ %>
                   <% teamNum += 1 %> 
                   <li class="list-group-item">
-                    <%=`Team #${teamNum}`%>
-                    <%= value.join()%>  
+                  <p class="listing-num"> <%=teamNum%></p>  
+                  <p class="listing"><%= value.join()%></p> 
                     <% console.log(value) %> 
                   </li>
                 <% } %> 
@@ -49,11 +50,12 @@
               <% if(which === 'team-count'){ %> 
                 <% let toPrint = utils.numOfTeams(post.members, quantity) %> 
                 <% let teamNum = 0 %> 
+                <li class="list-group-item members"># Of Members</li>
                 <%for(let value of toPrint){ %>
                   <% teamNum += 1 %> 
                   <li class="list-group-item">
-                    <%=`Team #${teamNum}`%>
-                    <%= value.join()%>  
+                    <p class="listing-num"> <%=teamNum%></p>  
+                  <p class="listing"><%= value.join()%></p> 
                   </li>
                 <% } %> 
             <% } %>  

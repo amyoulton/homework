@@ -50,3 +50,18 @@
     max-width: 1400px;
   }
 }
+.members {
+  font-weight: bold;
+  padding: 1em;
+  margin-left: 1em;
+}
+
+.listing,
+.listing-num {
+  display: inline;
+}
+
+.listing-num {
+  font-weight: bold;
+  padding: 1em;
+}
