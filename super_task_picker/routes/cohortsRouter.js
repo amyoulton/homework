@@ -1,5 +1,6 @@
 const express = require('express');
 const knex = require('../db/connection');
+const utils = require('../db/utils');
 const router = express.Router();
 
 router.get('/new', (request, response) => {
@@ -33,19 +34,32 @@ router.get('/', (request, response) => {
 router.get('/:id', (request, response) => {
   const id = request.params.id;
   const choice = request.query;
+  let output;
+  let quantity = choice.quantity;
+  let which;
+
   knex('cohorts')
     .where('id', id)
     .first()
     .then(post => {
-      console.log(post);
+      console.log(choice.method);
+      output = post.members;
+      if (choice.method === 'team-count') {
+        which = 'team-count';
+      }
+      if (choice.method === 'num-per-team') {
+        which = 'num-per-team';
+      }
       if (post) {
-        response.render('cohorts/show', { post: post });
+        response.render('cohorts/show', {
+          post: post,
+          output,
+          quantity,
+          which
+        });
       } else {
         response.redirect('/cohorts/');
       }
-
-      console.log(post.members);
-      console.log(choice);
     });
 });
 

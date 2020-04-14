@@ -34,7 +34,14 @@
                 <input type="submit" class="btn btn-outline-primary btn-block" value="Delete" />
               </form>
             </li>
+            <% if(which === 'num-per-team'){ %> 
+                <h1>Hello <%= output%>  </h1>
+            <% } %>     
+            <% if(which === 'team-count'){ %> 
+                <h1>Goodbye <%= output%> <%= quantity.toString() %> </h1>
+            <% } %>  
         </ul>
         </div>
     </div>
 <%- include('../partials/footer.ejs') %>
+
