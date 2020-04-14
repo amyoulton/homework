@@ -26,7 +26,6 @@ router.get('/', (request, response) => {
   knex('cohorts')
     .orderBy('created_at', 'desc')
     .then(posts => {
-      //   response.send(posts);
       response.render('cohorts/index', { posts: posts });
     });
 });
@@ -34,7 +33,6 @@ router.get('/', (request, response) => {
 router.get('/:id', (request, response) => {
   const id = request.params.id;
   const choice = request.query;
-  let output;
   let quantity = choice.quantity;
   let which;
 
@@ -42,8 +40,6 @@ router.get('/:id', (request, response) => {
     .where('id', id)
     .first()
     .then(post => {
-      console.log(choice.method);
-      output = post.members;
       if (choice.method === 'team-count') {
         which = 'team-count';
       }
@@ -52,10 +48,10 @@ router.get('/:id', (request, response) => {
       }
       if (post) {
         response.render('cohorts/show', {
-          post: post,
-          output,
+          post,
           quantity,
-          which
+          which,
+          utils
         });
       } else {
         response.redirect('/cohorts/');
