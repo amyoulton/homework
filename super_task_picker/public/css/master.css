@@ -1,0 +1,67 @@
+.cohort-header {
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.team-name {
+  display: flex;
+  margin-top: 0.2em;
+  padding-left: 3px;
+}
+
+.list-group-flush {
+  margin: 0;
+  padding: 1em 1em;
+}
+
+.quantity {
+  width: 100%;
+}
+
+.btn {
+  margin-top: 1em;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 740px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 980px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1160px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+.members {
+  font-weight: bold;
+  padding: 1em;
+  margin-left: 1em;
+}
+
+.listing,
+.listing-num {
+  display: inline;
+}
+
+.listing-num {
+  font-weight: bold;
+  padding: 1em;
+}

@@ -1,0 +1,66 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">   
+    <div class="card">
+        <ul class="list-group-flush">
+            <li class="list-group-item">
+            <div class="cohort-header">
+            <img class="logo" src="<%= post.logoUrl %>">
+            <h4 class="team-name"><%= post.name %></h4>
+            </div>
+            <p class="card-text">
+                <div><%= post.members %></div>
+            </p>
+            </li>
+            <li class="list-group-item">
+            <form action="/cohorts/<%= post.id %>" method="GET">
+            <div class="input-group-flush">
+                <p>Method</p>
+                <input type="radio" name="method" value="team-count">
+                <label for="team-count">Team Count</label><br/>
+                <input type="radio" name="method" value="num-per-team">
+                <label for="num-per-team">Number Per Team</label><br/><br>
+                <label for="quantity">Quantity</label><br>
+                <input type="text" name="quantity" class="quantity">
+                <input type="submit" class="btn btn-outline-primary btn-block" value="Assign Teams" />
+            </div>
+            </form>
+              <div>
+                <a href="/cohorts/<%= post.id %>/edit" class="btn btn-outline-primary btn-block">
+                  Edit
+                </a>
+              </div>
+              <form method="POST" action="/cohorts/<%= post.id %>">
+                <input type="hidden" name="_method" value="DELETE" />
+                <input type="submit" class="btn btn-outline-primary btn-block" value="Delete" />
+              </form>
+            </li>
+            <% if(which === 'num-per-team'){ %> 
+              <% let toPrint = utils.numPerTeam(post.members, quantity) %> 
+              <% let teamNum = 0 %> 
+              <li class="list-group-item members"># Of Members</li>
+                <%for(let value of toPrint){ %>
+                  <% teamNum += 1 %> 
+                  <li class="list-group-item">
+                  <p class="listing-num"> <%=teamNum%></p>  
+                  <p class="listing"><%= value.join()%></p> 
+                    <% console.log(value) %> 
+                  </li>
+                <% } %> 
+              <% } %>     
+              <% if(which === 'team-count'){ %> 
+                <% let toPrint = utils.numOfTeams(post.members, quantity) %> 
+                <% let teamNum = 0 %> 
+                <li class="list-group-item members"># Of Members</li>
+                <%for(let value of toPrint){ %>
+                  <% teamNum += 1 %> 
+                  <li class="list-group-item">
+                    <p class="listing-num"> <%=teamNum%></p>  
+                  <p class="listing"><%= value.join()%></p> 
+                  </li>
+                <% } %> 
+            <% } %>  
+        </ul>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs') %>
+
